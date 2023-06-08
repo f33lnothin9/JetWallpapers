@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -55,7 +56,7 @@ dependencies {
 
     val hilt = "2.46.1"
     val retrofit = "2.9.0"
-    val okHttp = "5.0.0-alpha.10"
+    val okHttp = "4.11.0"
     val room = "2.5.1"
     val coroutines = "1.7.1"
     val navigation = "2.6.0"
@@ -97,8 +98,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:$retrofit")
     implementation("com.squareup.okhttp3:okhttp:$okHttp")
 
+    // Kotlin Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+
+
     // Room
     implementation("androidx.room:room-ktx:$room")
+    implementation("androidx.room:room-runtime:$room")
     ksp("androidx.room:room-compiler:$room")
 
     // Coil
