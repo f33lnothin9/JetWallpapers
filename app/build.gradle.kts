@@ -80,13 +80,13 @@ dependencies {
 
     // Integration with ViewModels
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:$navigation")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:$hilt")
@@ -95,17 +95,14 @@ dependencies {
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofit")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit")
     implementation("com.squareup.okhttp3:okhttp:$okHttp")
 
     // Kotlin Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 
-
     // Room
     implementation("androidx.room:room-ktx:$room")
-    implementation("androidx.room:room-runtime:$room")
     ksp("androidx.room:room-compiler:$room")
 
     // Coil

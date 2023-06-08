@@ -9,5 +9,5 @@ interface CategoriesApi {
 
     @Headers("Authorization: Client-ID bR2wTHaS-MTlEXIX60Q11Hsp77LnbdrpI6K7Jmk9vOE")
     @GET("/collections")
-    suspend fun getCategories(): Response<Category>
+    suspend fun getCategories(): Response<List<Category>>
 }
