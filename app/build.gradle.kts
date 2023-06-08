@@ -60,6 +60,7 @@ dependencies {
     val room = "2.5.1"
     val coroutines = "1.7.1"
     val navigation = "2.6.0"
+    val accompanist = "0.30.0"
 
     val composeBom = platform("androidx.compose:compose-bom:2023.06.00")
     implementation(composeBom)
@@ -107,4 +108,7 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // Accompanist
+    implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanist")
 }

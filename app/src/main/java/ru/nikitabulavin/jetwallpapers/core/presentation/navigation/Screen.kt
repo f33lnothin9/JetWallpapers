@@ -5,5 +5,6 @@ sealed class Screen(val route: String) {
     object Photos: Screen(route = "photos_screen")
     object Photo: Screen(route = "photo_screen")
     object Favorites: Screen(route = "favorites_screen")
+    object Downloads: Screen(route = "downloads_screen")
     object Settings: Screen(route = "settings_screen")
 }

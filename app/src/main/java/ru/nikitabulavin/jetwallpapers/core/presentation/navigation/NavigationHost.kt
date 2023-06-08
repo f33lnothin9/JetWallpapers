@@ -30,6 +30,10 @@ fun NavigationHost(navController: NavHostController, innerPadding: PaddingValues
 
         }
 
+        composable(route = Screen.Downloads.route) {
+
+        }
+
         composable(route = Screen.Settings.route) {
 
         }
