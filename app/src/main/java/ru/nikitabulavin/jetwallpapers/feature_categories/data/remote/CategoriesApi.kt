@@ -8,6 +8,6 @@ import ru.nikitabulavin.jetwallpapers.feature_categories.data.model.Category
 interface CategoriesApi {
 
     @Headers("Authorization: Client-ID bR2wTHaS-MTlEXIX60Q11Hsp77LnbdrpI6K7Jmk9vOE")
-    @GET("/collections")
+    @GET("/collections?page=10&per_page=20")
     suspend fun getCategories(): Response<List<Category>>
 }
