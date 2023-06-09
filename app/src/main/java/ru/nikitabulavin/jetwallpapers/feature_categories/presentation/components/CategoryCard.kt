@@ -22,9 +22,7 @@ fun CategoryCard(
 ) {
 
     Card(
-        onClick = {
-
-        }
+        onClick = navigateToPhotos
     ) {
         Column(
             horizontalAlignment = Alignment.Start

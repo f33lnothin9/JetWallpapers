@@ -4,10 +4,14 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import ru.nikitabulavin.jetwallpapers.feature_categories.presentation.CategoriesScreen
+import ru.nikitabulavin.jetwallpapers.feature_photos.presentation.PhotosScreen
 
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api
@@ -33,8 +37,19 @@ fun NavigationHost(navController: NavHostController, innerPadding: PaddingValues
 
         }
 
-        composable(route = Screen.Photos.route) {
+        composable(
+            route = Screen.Photos.route + "/{id}",
+            arguments = listOf(
+                navArgument("id") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val id = remember {
+                it.arguments?.getString("id")
+            }
 
+            id?.let { PhotosScreen(id = it, navController = navController) }
         }
 
         composable(route = Screen.Photo.route) {

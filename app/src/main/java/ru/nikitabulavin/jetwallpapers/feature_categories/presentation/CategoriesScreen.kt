@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import ru.nikitabulavin.jetwallpapers.core.presentation.navigation.Screen
 import ru.nikitabulavin.jetwallpapers.feature_categories.presentation.components.CategoryCard
 
 @ExperimentalFoundationApi
@@ -43,7 +44,7 @@ fun CategoriesScreen(
             CategoryCard(
                 category = category,
                 navigateToPhotos = {
-
+                    navController.navigate("${Screen.Photos.route}/${category.id}")
                 }
             )
         }
