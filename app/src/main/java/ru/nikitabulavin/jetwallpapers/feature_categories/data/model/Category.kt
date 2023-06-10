@@ -1,7 +1,9 @@
 package ru.nikitabulavin.jetwallpapers.feature_categories.data.model
 
+import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
+@Keep
 @Serializable
 data class Category(
     val cover_photo: CoverPhoto,

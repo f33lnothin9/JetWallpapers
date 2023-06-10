@@ -3,6 +3,7 @@ package ru.nikitabulavin.jetwallpapers.feature_photos.presentation.photo
 import android.app.WallpaperManager
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.os.Build
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,7 +44,7 @@ class PhotoViewModel @Inject constructor(
         }
     }
 
-    suspend fun setWallpaper(context: Context, url: String) {
+    suspend fun setWallpaper(context: Context, url: String, screen: Int) {
         val wallpaperManager = WallpaperManager.getInstance(context)
 
         try {
@@ -59,7 +60,40 @@ class PhotoViewModel @Inject constructor(
 
                 val bitmap = task.await()
 
-                wallpaperManager.setBitmap(bitmap)
+                when (screen) {
+                    1 -> {
+                        wallpaperManager.setBitmap(bitmap)
+                    }
+
+                    2 -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            wallpaperManager.setBitmap(
+                                bitmap,
+                                null,
+                                false,
+                                WallpaperManager.FLAG_SYSTEM
+                            )
+                        } else {
+                            wallpaperManager.setBitmap(bitmap)
+                        }
+                    }
+
+                    3 -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            wallpaperManager.setBitmap(
+                                bitmap,
+                                null,
+                                false,
+                                WallpaperManager.FLAG_LOCK
+                            )
+                        } else {
+                            wallpaperManager.setBitmap(bitmap)
+                        }
+                    }
+                    else -> {
+
+                    }
+                }
             }
         }
         catch (e: Exception) {

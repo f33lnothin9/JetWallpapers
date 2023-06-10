@@ -1,7 +1,9 @@
 package ru.nikitabulavin.jetwallpapers.feature_photos.presentation.photo
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -70,17 +72,42 @@ fun PhotoScreen(id: String, viewModel: PhotoViewModel = hiltViewModel(), navCont
         ) {
             PhotoCard(photo = photo)
 
-            Button(
-                onClick = {
-                    coroutineScope.launch {
-                        photo.urls?.let { viewModel.setWallpaper(context, it.full) }
-                    }
-                },
+            Row(
                 modifier = Modifier
-                    .padding(bottom = 60.dp)
                     .align(Alignment.BottomCenter)
+                    .padding(start = 16.dp, end = 16.dp, bottom = 60.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(text = "Set Wallpaper")
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            photo.urls?.let { viewModel.setWallpaper(context, it.full, 1) }
+                        }
+                    }
+                ) {
+                    Text(text = "Home & Lock")
+                }
+
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            photo.urls?.let { viewModel.setWallpaper(context, it.full, 2) }
+                        }
+                    }
+                ) {
+                    Text(text = "Home")
+                }
+
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            photo.urls?.let { viewModel.setWallpaper(context, it.full, 3) }
+                        }
+                    }
+                ) {
+                    Text(text = "Lock")
+                }
             }
         }
     }
