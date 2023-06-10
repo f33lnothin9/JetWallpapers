@@ -5,7 +5,7 @@ import ru.nikitabulavin.jetwallpapers.feature_categories.data.model.Urls
 
 @Serializable
 data class Photo(
-    val id: String,
-    val links: Links,
-    val urls: Urls,
+    val id: String? = null,
+    val links: Links? = null,
+    val urls: Urls? = null
 )

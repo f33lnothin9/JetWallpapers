@@ -17,21 +17,21 @@ sealed class NavBar(
 ) {
     object Categories : NavBar(
         route = Screen.Categories.route,
-        title = "Категории",
+        title = "Categories",
         icon = Icons.Outlined.Category,
         iconActive = Icons.Filled.Category
     )
 
     object Favorites : NavBar(
         route = Screen.Favorites.route,
-        title = "Избранное",
+        title = "Favorites",
         icon = Icons.Outlined.FavoriteBorder,
         iconActive = Icons.Filled.Favorite
     )
 
     object Downloads : NavBar(
         route = Screen.Downloads.route,
-        title = "Загрузки",
+        title = "Downloads",
         icon = Icons.Outlined.Download,
         iconActive = Icons.Filled.Download
     )

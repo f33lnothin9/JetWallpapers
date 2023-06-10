@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import ru.nikitabulavin.jetwallpapers.feature_categories.presentation.CategoriesScreen
 import ru.nikitabulavin.jetwallpapers.feature_photos.presentation.PhotosScreen
+import ru.nikitabulavin.jetwallpapers.feature_photos.presentation.photo.PhotoScreen
 
 @ExperimentalFoundationApi
 @ExperimentalMaterial3Api
@@ -52,8 +53,19 @@ fun NavigationHost(navController: NavHostController, innerPadding: PaddingValues
             id?.let { PhotosScreen(id = it, navController = navController) }
         }
 
-        composable(route = Screen.Photo.route) {
+        composable(
+            route = Screen.Photo.route + "/{id}",
+            arguments = listOf(
+                navArgument("id") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val id = remember {
+                it.arguments?.getString("id")
+            }
 
+            id?.let { PhotoScreen(id = it, navController = navController) }
         }
 
         composable(route = Screen.Settings.route) {

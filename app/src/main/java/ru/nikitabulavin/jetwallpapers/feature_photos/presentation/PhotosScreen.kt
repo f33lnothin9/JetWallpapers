@@ -23,7 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import ru.nikitabulavin.jetwallpapers.core.presentation.components.CoilImage
+import ru.nikitabulavin.jetwallpapers.core.presentation.navigation.Screen
+import ru.nikitabulavin.jetwallpapers.feature_photos.presentation.components.PhotoCard
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
@@ -63,7 +64,13 @@ fun PhotosScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(photos) {photo ->
-                CoilImage(url = photo.urls.regular)
+
+                PhotoCard(
+                    photo = photo,
+                    navigateToPhoto = {
+                        navController.navigate("${Screen.Photo.route}/${photo.id}")
+                    }
+                )
             }
         }
     }
