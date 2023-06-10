@@ -1,14 +1,20 @@
 package ru.nikitabulavin.jetwallpapers.feature_photos.presentation.photo
 
+import android.app.WallpaperManager
+import android.content.Context
+import android.graphics.BitmapFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.nikitabulavin.jetwallpapers.feature_photos.data.model.Links
 import ru.nikitabulavin.jetwallpapers.feature_photos.data.model.Photo
 import ru.nikitabulavin.jetwallpapers.feature_photos.domain.use_case.GetPhotoUseCase
+import java.net.URL
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,6 +40,30 @@ class PhotoViewModel @Inject constructor(
                     _isError.value = true
                 }
             }
+        }
+    }
+
+    suspend fun setWallpaper(context: Context, url: String) {
+        val wallpaperManager = WallpaperManager.getInstance(context)
+
+        try {
+            coroutineScope {
+                val task = async(Dispatchers.IO) {
+
+                    BitmapFactory.decodeStream(
+                        URL(url)
+                            .openConnection()
+                            .getInputStream()
+                    )
+                }
+
+                val bitmap = task.await()
+
+                wallpaperManager.setBitmap(bitmap)
+            }
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }
