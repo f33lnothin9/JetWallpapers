@@ -27,6 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
+import ru.nikitabulavin.jetwallpapers.feature_downloads.data.repository.DownloaderRepositoryImpl
 import ru.nikitabulavin.jetwallpapers.feature_photos.presentation.components.PhotoCard
 
 @ExperimentalMaterial3Api
@@ -51,7 +52,11 @@ fun PhotoScreen(id: String, viewModel: PhotoViewModel = hiltViewModel(), navCont
                 }
             },
             actions = {
-                IconButton(onClick = {  }) {
+                IconButton(
+                    onClick = {
+                        photo.links?.let { viewModel.downloadPhoto(context, it.download) }
+                    }
+                ) {
                     Icon(
                         imageVector = Icons.Outlined.Download,
                         contentDescription = "Download"

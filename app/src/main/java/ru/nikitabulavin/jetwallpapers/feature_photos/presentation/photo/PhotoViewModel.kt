@@ -13,6 +13,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.nikitabulavin.jetwallpapers.feature_downloads.data.repository.DownloaderRepositoryImpl
 import ru.nikitabulavin.jetwallpapers.feature_photos.data.model.Photo
 import ru.nikitabulavin.jetwallpapers.feature_photos.domain.use_case.GetPhotoUseCase
 import java.net.URL
@@ -99,5 +100,11 @@ class PhotoViewModel @Inject constructor(
         catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun downloadPhoto(context: Context, url: String) {
+        val downloader = DownloaderRepositoryImpl(context)
+
+        downloader.downloadPhoto(url)
     }
 }
